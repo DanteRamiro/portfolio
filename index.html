@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ramiro Lezcano — Desarrollador Web Frontend</title>
+  <meta name="description" content="Portfolio de Ramiro Lezcano - Desarrollador Web Frontend. HTML, CSS, JavaScript y diseño responsive." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="dark">
+  <header class="nav-container">
+    <a class="logo" href="index.html">Ramiro Lezcano</a>
+    <button id="nav-toggle" aria-label="Abrir menú">☰</button>
+    <nav id="nav">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">Sobre mí</a></li>
+        <li><a href="projects.html">Proyectos</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Hola, soy <span class="accent">Ramiro Lezcano</span></h1>
+        <p class="lead">Desarrollador Web Frontend — HTML • CSS • JavaScript</p>
+        <div class="cta-group">
+          <a href="projects.html" class="btn btn-primary">Ver proyectos</a>
+          <a href="about.html" class="btn btn-ghost">Sobre mí</a>
+        </div>
+      </div>
+      <div class="hero-image" aria-hidden="true">
+        <!-- imagen decorativa o ilustración -->
+        <img src="assets/img/hero-dev.jpg" alt="" />
+      </div>
+    </section>
+
+    <section class="intro-cards">
+      <article class="card">
+        <h3>Frontend</h3>
+        <p>Interfaces limpias y responsive con HTML, CSS y JavaScript.</p>
+      </article>
+      <article class="card">
+        <h3>Responsive</h3>
+        <p>Diseño que funciona en móvil, tablet y escritorio.</p>
+      </article>
+      <article class="card">
+        <h3>Git & GitHub</h3>
+        <p>Control de versiones y despliegue en Vercel.</p>
+      </article>
+    </section>
+
+    <section class="featured-project">
+      <h2>Proyecto destacado</h2>
+      <div class="project-card">
+        <img src="assets/img/project-1.png" alt="Captura Proyecto 1">
+        <div class="project-info">
+          <h3>Landing Page - UI/UX</h3>
+          <p>Landing totalmente responsive creada con HTML y CSS moderno. Incluye hero, cards y secciones de features.</p>
+          <div class="project-actions">
+            <a class="btn btn-outline" href="projects.html#proj1">Ver proyecto</a>
+            <a class="link" href="https://github.com/DanteRamiro" target="_blank" rel="noopener">Código en GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <p>© <span id="year"></span> Ramiro Lezcano — Desarrollador Web</p>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/DanteRamiro" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/dante-ramiro-lezcano-2b1486211" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:dantelezcano05@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
