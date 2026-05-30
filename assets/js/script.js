@@ -36,7 +36,7 @@ makeToggle('nav-toggle-3','nav-3');
 makeToggle('nav-toggle-4','nav-4');
 
 
-  // Contact form handling (front-end only)
+// Contact form handling (Real backend connection)
   const form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', function (e) {
@@ -46,22 +46,41 @@ makeToggle('nav-toggle-4','nav-4');
       const message = form.message.value.trim();
       const msgBox = document.getElementById('formMessage');
 
-      // basic validation
+      // Validación básica en el front
       if (!name || !email || !message) {
         msgBox.textContent = 'Por favor completá todos los campos.';
         msgBox.style.color = '#ff8b8b';
         return;
       }
-      // simulate send (since no backend)
+      
       msgBox.style.color = '';
-      msgBox.textContent = 'Enviando...';
+      msgBox.textContent = 'Enviando mensaje...';
 
-      // small delay to simulate network
-      setTimeout(() => {
-        form.reset();
-        msgBox.style.color = '';
-        msgBox.textContent = 'Gracias por tu mensaje. Te responderé pronto.';
-      }, 800);
+      // Creamos el objeto con los datos del formulario
+      const formData = { name, email, message };
+
+      // Enviamos los datos a nuestra Serverless Function en Vercel
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData) // Convertimos el objeto a texto JSON para el servidor
+      })
+      .then(response => {
+        if (response.ok) {
+          form.reset();
+          msgBox.style.color = '#8b9374'; // Tu verde oliva característico
+          msgBox.textContent = '¡Gracias por tu mensaje! Te responderé pronto.';
+        } else {
+          throw new Error('Error en el envío');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        msgBox.style.color = '#ff8b8b';
+        msgBox.textContent = 'Hubo un problema al enviar. Intentalo de nuevo.';
+      });
     });
   }
 

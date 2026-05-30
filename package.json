@@ -1,0 +1,15 @@
+{
+  "name": "mi-portfolio",
+  "version": "1.0.0",
+  "description": "Este es mi portfolio personal como **Desarrollador Web Frontend**, creado como proyecto final del curso de Diseño Web.  \r El sitio presenta mis habilidades, proyectos, información personal y un formulario de contacto.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^8.0.10"
+  }
+}
