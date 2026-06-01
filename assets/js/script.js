@@ -36,57 +36,29 @@ makeToggle('nav-toggle-3','nav-3');
 makeToggle('nav-toggle-4','nav-4');
 
 
-// Contact form handling (Real backend connection)
+// Buscamos el formulario en el HTML
   const form = document.getElementById('contactForm');
-  // Contact form handling (Real backend connection)
+  
+// Contact form handling (Direct HTML Submission)
   if (form) {
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      
-      // Extraemos los valores de los inputs
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const message = form.message.value.trim();
       const msgBox = document.getElementById('formMessage');
 
-      // Validación básica en el front
+      // Si falta algún campo, frenamos el envío y mostramos error en rojo
       if (!name || !email || !message) {
+        e.preventDefault(); // Evita que se envíe vacío
         msgBox.textContent = 'Por favor completá todos los campos.';
         msgBox.style.color = '#ff8b8b';
         return;
       }
       
-      msgBox.style.color = '';
-      msgBox.textContent = 'Enviando mensaje...';
-
-      // Usamos FormData para empaquetar los datos correctamente sin romper CORS
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('message', message);
-
-      // Enviamos los datos formateados a FormSubmit
-      fetch('https://formsubmit.co/ajax/dantelezcano05@gmail.com', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        if (response.ok) {
-          form.reset();
-          msgBox.style.color = '#8b9374'; // Tu verde oliva
-          msgBox.textContent = '¡Gracias por tu mensaje! Te responderé pronto.';
-        } else {
-          throw new Error('Error en el envío');
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        msgBox.style.color = '#ff8b8b';
-        msgBox.textContent = 'Hubo un problema al enviar. Intentalo de nuevo.';
-      });
+      // Si todo está bien, NO ponemos e.preventDefault(). 
+      // Dejamos que el HTML viaje directo a Formspree.
+      msgBox.style.color = '#8b9374';
+      msgBox.textContent = 'Enviando...';
     });
   }
 
