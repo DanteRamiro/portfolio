@@ -38,17 +38,18 @@ makeToggle('nav-toggle-4','nav-4');
 
 // Contact form handling (Real backend connection)
   const form = document.getElementById('contactForm');
+  // Contact form handling (Real backend connection)
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       
-      // 1. EXTRAER LOS VALORES DE LOS INPUTS (Esto faltaba en tu captura)
+      // Extraemos los valores de los inputs
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const message = form.message.value.trim();
       const msgBox = document.getElementById('formMessage');
 
-      // 2. Validación básica en el front
+      // Validación básica en el front
       if (!name || !email || !message) {
         msgBox.textContent = 'Por favor completá todos los campos.';
         msgBox.style.color = '#ff8b8b';
@@ -58,17 +59,19 @@ makeToggle('nav-toggle-4','nav-4');
       msgBox.style.color = '';
       msgBox.textContent = 'Enviando mensaje...';
 
-      // Creamos el objeto con los datos recolectados
-      const formData = { name, email, message };
+      // Usamos FormData para empaquetar los datos correctamente sin romper CORS
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('message', message);
 
-      // Enviamos los datos a FormSubmit
+      // Enviamos los datos formateados a FormSubmit
       fetch('https://formsubmit.co/ajax/dantelezcano05@gmail.com', {
         method: 'POST',
+        body: formData,
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        }
       })
       .then(response => {
         if (response.ok) {
