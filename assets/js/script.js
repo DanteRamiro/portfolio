@@ -41,12 +41,14 @@ makeToggle('nav-toggle-4','nav-4');
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      
+      // 1. EXTRAER LOS VALORES DE LOS INPUTS (Esto faltaba en tu captura)
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const message = form.message.value.trim();
       const msgBox = document.getElementById('formMessage');
 
-      // Validación básica en el front
+      // 2. Validación básica en el front
       if (!name || !email || !message) {
         msgBox.textContent = 'Por favor completá todos los campos.';
         msgBox.style.color = '#ff8b8b';
@@ -56,21 +58,22 @@ makeToggle('nav-toggle-4','nav-4');
       msgBox.style.color = '';
       msgBox.textContent = 'Enviando mensaje...';
 
-      // Creamos el objeto con los datos del formulario
+      // Creamos el objeto con los datos recolectados
       const formData = { name, email, message };
 
-      // Enviamos los datos a nuestra Serverless Function en Vercel
-      fetch('/api/send-email', {
+      // Enviamos los datos a FormSubmit
+      fetch('https://formsubmit.co/ajax/dantelezcano05@gmail.com', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(formData) // Convertimos el objeto a texto JSON para el servidor
+        body: JSON.stringify(formData)
       })
       .then(response => {
         if (response.ok) {
           form.reset();
-          msgBox.style.color = '#8b9374'; // Tu verde oliva característico
+          msgBox.style.color = '#8b9374'; // Tu verde oliva
           msgBox.textContent = '¡Gracias por tu mensaje! Te responderé pronto.';
         } else {
           throw new Error('Error en el envío');
